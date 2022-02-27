@@ -11,8 +11,8 @@
     import { conditionsParser } from "$lib/utils/conditionsParser"
     import { time_options, convertAmPmToIsoTime } from "$lib/utils/dateTimeUtils"
     import { user } from "$lib/stores/userStore"
+    import { endpoint } from "$lib/utils/endpoint"
 
-    const endpoint = "http://127.0.0.1:8080/api"
 
     // prevents user from getting conditions without inputting all parameters
     let isDisabled = true;
