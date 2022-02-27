@@ -3,9 +3,6 @@
     import { favorites, addFavorite, removeFavorite } from "$lib/stores/favoritesStore";
     import { comments, getComments, postComment } from "$lib/stores/commentsStore";
     import { user, users, isAuthenticated } from "$lib/stores/userStore"; 
-    import Fa from 'svelte-fa/src/fa.svelte'
-    import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons'
-    import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
     import { slide } from "svelte/transition";
     import { onMount } from "svelte";
 
@@ -74,15 +71,15 @@
                     }
                 }}>
                     {#if !postIsLiked}
-                        <Fa icon={faHeart} size="1.5x" />
+                        <div>like</div>
                     {/if}
                     {#if postIsLiked}
-                        <Fa icon={solidHeart} size="1.5x" primaryColor=#7e30e6 />
+                        <div>unlike</div>
                     {/if}
                     <div class="favorite-count">{favoritesOnPost.length}</div>
                 </div>
                 <div class="comments" on:click={() => displayComments = !displayComments} >
-                    <Fa icon={faComment} size="1.5x"/>
+                    <div>comment</div>
                     <div class="comment-count">{commentsOnPost.length}</div>
                 </div>
                 

@@ -1,7 +1,5 @@
 <script>
 	import { _16point } from '$lib/utils/_16point'
-	import Fa from 'svelte-fa/src/fa.svelte'
-    import { faArrowAltCircleDown } from '@fortawesome/free-regular-svg-icons'
 	import SvelteTooltip from 'svelte-tooltip';
 	
 	const tooltip = "Swell is a measure of ocean energy. It can give us a rough estimate of how big the waves are"
@@ -20,21 +18,21 @@
 		
 
 		<div class="swell">{conditions.swell_height} ft. @ {conditions.swell_period}s<br>{_16point(+conditions.swell_direction)} {conditions.swell_direction}°</div>
-		<div class="direction-arrow">
+		<!-- <div class="direction-arrow">
 			<Fa icon={faArrowAltCircleDown} size="2.5x" style="transform: rotate({conditions.swell_direction}deg);"/>
-		</div>
+		</div> -->
 		{#if +conditions.wind_wave_height > 1  && +conditions.wind_wave_height > +conditions.secondary_swell_height}
 			<div class="swell">{conditions.wind_wave_height} ft. @ {conditions.wind_wave_period}s<br>{_16point(+conditions.wind_wave_direction)} {conditions.wind_wave_direction}°</div>
-			<div class="direction-arrow">
+			<!-- <div class="direction-arrow">
 				<Fa icon={faArrowAltCircleDown} size="2.5x" style="transform: rotate({conditions.wind_wave_direction}deg);"/>
-			</div>
+			</div> -->
 		{/if}
 
 		{#if +conditions.secondary_swell_height > 1 && +conditions.wind_wave_height < +conditions.secondary_swell_height}
 			<div class="swell">{conditions.secondary_swell_height} ft. @ {conditions.secondary_swell_period}s<br>{_16point(+conditions.secondary_swell_direction)} {conditions.secondary_swell_direction}°</div>
-			<div class="direction-arrow">
+			<!-- <div class="direction-arrow">
 				<Fa icon={faArrowAltCircleDown} size="2.5x" style="transform: rotate({conditions.secondary_swell_direction}deg);"/>
-			</div>
+			</div> -->
 		{/if}
 		
 	</div>
@@ -72,10 +70,6 @@
 		padding: 0.3em;
 		font-family: Helvetica, sans-serif;
 		font-weight:lighter;
-	}
-
-	.direction-arrow {
-		margin: 2px 0 25px 0;
 	}
 
 	.tooltip {

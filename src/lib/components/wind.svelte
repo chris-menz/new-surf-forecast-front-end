@@ -1,7 +1,6 @@
 <script>
     import { _16point } from '$lib/utils/_16point'
-	import Fa from 'svelte-fa/src/fa.svelte'
-    import { faArrowAltCircleDown } from '@fortawesome/free-regular-svg-icons'
+	import IconArrowDownCircleOutline from '~icons/mdi/arrow-down-circle-outline'
 	
 	export let weather;
 </script>
@@ -12,9 +11,7 @@
 	{#if weather.wind.gust}
 		<br>{weather.wind.gust.toFixed(0)} {+weather.wind.gust.toFixed(0) == 1 ? "kt" : "kts"} Gusts
 	{/if}<br>{_16point(weather.wind.deg)} {weather.wind.deg}°</div>
-	<div class="direction-arrow">
-		<Fa icon={faArrowAltCircleDown} size="2.5x" style="transform: rotate({weather.wind.deg}deg);"/>
-	</div>
+	<IconArrowDownCircleOutline style="font-size: 2.5em; transform: rotate({weather.wind.deg}deg)" class="direction-arrow"/>
 </main>
 
 <style>
@@ -36,7 +33,7 @@
 
 	.wind {
 		font-size: 1.3em;
-		padding: 0.2em;
+		padding-top: 0.2em;
 		font-family: Helvetica, sans-serif;
 		font-weight:lighter;
 	}
