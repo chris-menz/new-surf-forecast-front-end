@@ -11,7 +11,11 @@ export async function getSavedSpots(user: User) {
     endpoint + "/spot/user/" + user.id,
     axiosConfig
   );
-  savedSpots.update((savedSpots) => (savedSpots = response.data));
+  if (response.data.message == "Success") {
+    savedSpots.update((savedSpots) => (savedSpots = response.data));
+  } else {
+    savedSpots.update((savedSpots) => (savedSpots = []));
+  }
 }
 
 export async function saveNewSpot(
