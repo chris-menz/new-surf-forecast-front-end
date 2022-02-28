@@ -12,7 +12,7 @@ export async function getSavedSpots(user: User) {
     axiosConfig
   );
   if (response.data.message == "Success") {
-    savedSpots.update((savedSpots) => (savedSpots = response.data));
+    savedSpots.update((savedSpots) => (savedSpots = response.data.spots));
   } else {
     savedSpots.update((savedSpots) => (savedSpots = []));
   }

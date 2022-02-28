@@ -21,6 +21,8 @@
         }
 
         savedSpotsLoaded = true
+
+        console.log($savedSpots.length)
 	})
 </script>
 
