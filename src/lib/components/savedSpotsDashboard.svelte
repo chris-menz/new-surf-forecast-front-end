@@ -15,8 +15,6 @@
         } else {
             $savedSpots = []
         }
-
-        console.log($savedSpots.length)
         
         savedSpotsLoaded = true
 	})
