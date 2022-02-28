@@ -7,10 +7,6 @@
 
 	let savedSpotsLoaded = false;
 
-    const isAuth = async () => {
-        return await isAuthenticated
-    }
-
     onMount(async () => {
 		savedSpotsLoaded = false
 
@@ -20,9 +16,9 @@
             $savedSpots = []
         }
 
-        savedSpotsLoaded = true
-
         console.log($savedSpots.length)
+        
+        savedSpotsLoaded = true
 	})
 </script>
 
@@ -33,7 +29,7 @@
         </div>
         {#if savedSpotsLoaded}
             <div class="spots-container">
-                {#if $user && $savedSpots}
+                {#if $user && $savedSpots.length > 0}
                     {#each $savedSpots as spot}
                         <div class="spot"><SpotOutlook spotName={spot.spot_name} spotRegion={spot.spot_region} on:fullReportRequest /></div>
                     {/each}
