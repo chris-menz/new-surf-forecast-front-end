@@ -78,7 +78,7 @@
 		// tide values that occur at times before the first extreme of the day
 		const localDateYesterday = new Date((localTimeInUnix - 86400) * 1000).toISOString();
 
-		if($savedSpots){
+		if($savedSpots.length > 0){
 			const spotSavedArr = $savedSpots.filter((br) => surf_break_name == br.spot_name && region == br.spot_region)
 			spotIsSaved = (spotSavedArr.length > 0 ? true : false)
 		}

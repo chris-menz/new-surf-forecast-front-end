@@ -15,9 +15,6 @@
 </main>
 
 <style>
-	:root{
-		--deg: 0deg;
-	}
 	
 	* {
 		box-sizing: border-box;
