@@ -7,8 +7,7 @@
     import { getTideHeight } from "$lib/utils/tideUtils";
     import axios from "axios"
     import { fly } from "svelte/transition";
-
-    const endpoint = "http://127.0.0.1:8080/api"
+    import { endpoint } from "$lib/utils/endpoint"
 
     const dispatch = createEventDispatcher();  
 
