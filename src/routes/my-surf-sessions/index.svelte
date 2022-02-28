@@ -43,7 +43,7 @@
 
 <main class="large-screen-view">
     <Nav />
-    <div class="container" in:fly="{{ delay: 350, duration: 200 }}">
+    <div class="container" in:fly="{{ delay: 380, duration: 200 }}">
         <AddSession />
         <MySurfSessionsFeed />  
     </div>

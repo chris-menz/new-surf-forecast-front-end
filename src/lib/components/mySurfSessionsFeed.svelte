@@ -8,6 +8,7 @@
     import axios from "axios"
     import { axiosConfig } from "$lib/utils/axiosConfig"
     import { endpoint } from "$lib/utils/endpoint"
+    import IconRefreshDouble from "~icons/iconoir/refresh-double"
 
     let surf_sessions = [];
 
@@ -47,11 +48,15 @@
 
 <main>
     <div class="my-sessions-container">
+        <div class="my-sessions-header header">My Sessions</div>
         {#if sessionsLoading}
-            <div class="loading" in:fly="{{ duration: 200 }}">Loading Sessions...</div>
+            <div class="loading-container" in:fly="{{ duration: 200 }}">
+                <div class="loading">Loading Sessions</div>
+                <div class="loading-icon"><IconRefreshDouble style="margin: -9.8px; padding: 0;"/></div>
+            </div>
         {/if}
         {#if sessionsLoaded}
-            <div class="my-sessions-header header">My Sessions</div>
+            
             <div class="sessions-container">
                 {#each surf_sessions as session}
                     <PersonalSurfSession {session} />
@@ -72,7 +77,41 @@
     </div>
 </main>
 
+
 <style>
+
+    .loading-container {
+		font-size: 2em;
+		color: white;
+		text-align: center;
+		transition-duration: 100ms;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100%;
+        margin-top: 3em;
+	}
+
+	.loading {
+		padding-right: 0.75em;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-weight: lighter;
+	}
+	.loading-icon {
+		animation-name: spin;
+		animation-duration: 1.5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+
+    @keyframes spin {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(360deg);
+        }
+    }
     .header {
         background-color: #313131;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
@@ -96,13 +135,6 @@
         align-items: center;
     }
 
-    .loading {
-		font-size: 2em;
-		color: white;
-		text-align: center;
-		margin: 3em auto;
-		transition-duration: 100ms;
-	}
 
     .not-logged-in-container {
         background-color: #313131;

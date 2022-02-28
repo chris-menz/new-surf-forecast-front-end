@@ -7,12 +7,6 @@
 	import { axiosConfig } from "$lib/utils/axiosConfig"
 	
 	let open = false;
-
-	let isLoggedIn: boolean;
-
-	onMount(async () => {
-        isLoggedIn = await isAuthenticated()
-    })
 </script>
 
 <main>
@@ -30,10 +24,10 @@
 			<li><a href="/surf-reports">Surf Reports</a></li>
 			<li><a href="/my-surf-sessions">My Surf Sessions</a></li>
 			<li><a href="/explore-surf-sessions">Explore Surf Sessions</a></li>
-			{#if isLoggedIn}
+			{#if $user}
 				<li on:click={logout}><a href="/surf-reports">Logout</a></li>
 			{/if}
-			{#if !isLoggedIn}
+			{#if !$user}
 				<li><a href="/login">Login/Signup</a></li>
 			{/if}
 
@@ -42,10 +36,10 @@
 			<li><a href="/surf-reports">Surf Reports</a></li>
 			<li><a href="/my-surf-sessions">My Surf Sessions</a></li>
 			<li><a href="/explore-surf-sessions">Explore Surf Sessions</a></li>
-			{#if isLoggedIn}
+			{#if $user}
 				<li on:click={logout}><a href="/surf-reports">Logout</a></li>
 			{/if}
-			{#if !isLoggedIn}
+			{#if !$user}
 				<li><a href="/login">Login/Signup</a></li>
 			{/if}
 		</ul>
@@ -136,7 +130,7 @@
 	
 	.logo{
 		font-size: 2.5em;
-		font-family: Georgia;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
 		margin: 00.5rem;
 		text-shadow: 2px 2px 4px #000000;
 	}

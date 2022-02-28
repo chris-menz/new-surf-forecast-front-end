@@ -12,6 +12,7 @@
     import { time_options, convertAmPmToIsoTime } from "$lib/utils/dateTimeUtils"
     import { user } from "$lib/stores/userStore"
     import { endpoint } from "$lib/utils/endpoint"
+    import IconRefreshDouble from "~icons/iconoir/refresh-double"
 
 
     // prevents user from getting conditions without inputting all parameters
@@ -220,7 +221,10 @@
                 </div>
 
                 {#if conditionsLoading}
-                    <div class="loading" in:fly="{{ duration: 200 }}">Loading Surf Data...</div>
+                    <div class="loading-container" in:fly="{{ duration: 200 }}">
+                        <div class="loading">Loading Surf Data</div>
+                        <div class="loading-icon"><IconRefreshDouble style="margin: -9.8px; padding: 0;"/></div>
+                    </div>
                 {/if}
                 
                 {#if has_got_conditions}
@@ -285,14 +289,6 @@
         padding: 0 1em;
     }
 
-    .loading {
-		font-size: 2em;
-		color: white;
-		text-align: center;
-		margin: 3em auto;
-		transition-duration: 100ms;
-	}
-
 
     .select-container {
         background-color: #313131;
@@ -339,6 +335,39 @@
     select:hover {
         background-color: #030303;
     }
+
+    .loading-container {
+		font-size: 2em;
+		color: white;
+		text-align: center;
+		margin: 3em auto;
+		transition-duration: 100ms;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.loading {
+		padding-right: 0.75em;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-weight: lighter;
+	}
+	.loading-icon {
+		animation-name: spin;
+		animation-duration: 1.5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+
+	@keyframes spin {
+		from {
+			transform:rotate(0deg);
+		}
+		to {
+			transform:rotate(360deg);
+		}
+	}
 
     .session-info-container {
         background-color: #313131;

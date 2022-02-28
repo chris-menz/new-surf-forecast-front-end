@@ -5,6 +5,9 @@
     import { user, users, isAuthenticated } from "$lib/stores/userStore"; 
     import { slide } from "svelte/transition";
     import { onMount } from "svelte";
+    import IconCommentOutline from "~icons/mdi/comment-outline"
+    import IconCardsHeartOutline from "~icons/mdi/cards-heart-outline"
+    import IconCardsHeart from "~icons/mdi/cards-heart"
 
     export let session: SurfSession;
 
@@ -71,15 +74,15 @@
                     }
                 }}>
                     {#if !postIsLiked}
-                        <div>like</div>
+                        <div><IconCardsHeartOutline style="font-size: 1.4em"/></div>
                     {/if}
                     {#if postIsLiked}
-                        <div>unlike</div>
+                        <div><IconCardsHeart style="font-size: 1.4em"/></div>
                     {/if}
                     <div class="favorite-count">{favoritesOnPost.length}</div>
                 </div>
                 <div class="comments" on:click={() => displayComments = !displayComments} >
-                    <div>comment</div>
+                    <div><IconCommentOutline style="font-size: 1.35em; margin-top: 1px"/></div>
                     <div class="comment-count">{commentsOnPost.length}</div>
                 </div>
                 
@@ -210,7 +213,7 @@
     .favorite-comment-buttons {
         display: flex;
         justify-content: space-between;
-        width: 16%;
+        width: 15%;
         margin-bottom: 0.25em;
     }
 
@@ -224,7 +227,10 @@
     }
 
     .favorite-count, .comment-count {
-        margin-top: 0.2em;
+        font-family: Arial, sans-serif;
+        font-weight: lighter;
+        color: white;
+        font-size: 1.2em;
     }
 
     .comments-container {
@@ -232,6 +238,11 @@
         border-radius: 5px;
         padding: 0.5em 1em;
         margin: 0.5em 0;
+    }
+
+    .comment {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 00.85em;
     }
 
     button {

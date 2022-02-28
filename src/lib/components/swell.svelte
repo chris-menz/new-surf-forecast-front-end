@@ -1,6 +1,7 @@
 <script>
 	import { _16point } from '$lib/utils/_16point'
 	import SvelteTooltip from 'svelte-tooltip';
+	import IconArrowDownCircled from "~icons/iconoir/arrow-down-circled"
 	
 	const tooltip = "Swell is a measure of ocean energy. It can give us a rough estimate of how big the waves are"
 	export let conditions;
@@ -18,21 +19,16 @@
 		
 
 		<div class="swell">{conditions.swell_height} ft. @ {conditions.swell_period}s<br>{_16point(+conditions.swell_direction)} {conditions.swell_direction}°</div>
-		<!-- <div class="direction-arrow">
-			<Fa icon={faArrowAltCircleDown} size="2.5x" style="transform: rotate({conditions.swell_direction}deg);"/>
-		</div> -->
+		<IconArrowDownCircled style="font-size: 3em; transform: rotate({+conditions.swell_direction}deg); margin-bottom: 0.2em" />
+
 		{#if +conditions.wind_wave_height > 1  && +conditions.wind_wave_height > +conditions.secondary_swell_height}
 			<div class="swell">{conditions.wind_wave_height} ft. @ {conditions.wind_wave_period}s<br>{_16point(+conditions.wind_wave_direction)} {conditions.wind_wave_direction}°</div>
-			<!-- <div class="direction-arrow">
-				<Fa icon={faArrowAltCircleDown} size="2.5x" style="transform: rotate({conditions.wind_wave_direction}deg);"/>
-			</div> -->
+			<IconArrowDownCircled style="font-size: 3em; transform: rotate({+conditions.wind_wave_direction}deg); margin-bottom: 0.2em" />
 		{/if}
 
 		{#if +conditions.secondary_swell_height > 1 && +conditions.wind_wave_height < +conditions.secondary_swell_height}
 			<div class="swell">{conditions.secondary_swell_height} ft. @ {conditions.secondary_swell_period}s<br>{_16point(+conditions.secondary_swell_direction)} {conditions.secondary_swell_direction}°</div>
-			<!-- <div class="direction-arrow">
-				<Fa icon={faArrowAltCircleDown} size="2.5x" style="transform: rotate({conditions.secondary_swell_direction}deg);"/>
-			</div> -->
+			<IconArrowDownCircled style="font-size: 3em; transform: rotate({+conditions.secondary_swell_direction}deg); margin-bottom: 0.2em" />
 		{/if}
 		
 	</div>

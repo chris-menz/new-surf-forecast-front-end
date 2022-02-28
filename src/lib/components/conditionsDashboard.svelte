@@ -14,6 +14,7 @@
 	import { savedSpots, saveNewSpot, deleteSpot } from "$lib/stores/savedSpotStore"
 	import { user } from "$lib/stores/userStore"
 	import { endpoint } from "$lib/utils/endpoint"
+	import IconRefreshDouble from "~icons/iconoir/refresh-double"
 
 	// api responses
 	let conditionsMap: Map<string, object>;
@@ -118,7 +119,10 @@
 
 <main>
     {#if surfReportLoading}
-		<div class="loading" in:fly="{{ duration: 200 }}">Loading Surf Data...</div>
+		<div class="loading-container" in:fly="{{ duration: 200 }}">
+			<div class="loading">Loading Surf Data</div>
+			<div class="loading-icon"><IconRefreshDouble style="margin: -9.8px; padding: 0;"/></div>
+		</div>
 	{/if}
     {#if surfReportGenerated}
     <div class="conditions-container" in:fly="{{ delay: 320, duration: 200 }}">
@@ -253,7 +257,7 @@
 		box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
 		display: grid;
 		grid-template-columns: repeat(3, 12em);
-		grid-template-rows: repeat(2, 10em);
+		grid-template-rows: repeat(2, 11em);
 	}
 
 	.grid-item {
@@ -407,12 +411,37 @@
 		box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
 	}
 
-    .loading {
+    .loading-container {
 		font-size: 2em;
 		color: white;
 		text-align: center;
 		margin: 8em auto;
 		transition-duration: 100ms;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.loading {
+		padding-right: 0.75em;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-weight: lighter;
+	}
+	.loading-icon {
+		animation-name: spin;
+		animation-duration: 1.5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+
+	@keyframes spin {
+		from {
+			transform:rotate(0deg);
+		}
+		to {
+			transform:rotate(360deg);
+		}
 	}
 
 	::-webkit-scrollbar {
@@ -446,7 +475,7 @@
 
 		.live-conditions {
 			grid-template-columns: repeat(2, 12em);
-			grid-template-rows: repeat(2, 17em);
+			grid-template-rows: repeat(2, 18em);
 			margin-bottom: 1em;
 		}
 
@@ -512,7 +541,7 @@
 	@media (max-width: 1040px) {
 		.live-conditions {
 			grid-template-columns: repeat(2, 10em);
-			grid-template-rows: repeat(2, 17em);
+			grid-template-rows: repeat(2, 18em);
 		}
 
 		.forecast-header, .live-conditions-header {
@@ -558,7 +587,7 @@
 
 		.live-conditions {
 			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: repeat(2, 17em);
+			grid-template-rows: repeat(2, 18em);
 			margin-bottom: 1em;
 			width: 90vw;
 			margin: 0;

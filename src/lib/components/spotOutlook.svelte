@@ -8,6 +8,7 @@
     import axios from "axios"
     import { fly } from "svelte/transition";
     import { endpoint } from "$lib/utils/endpoint"
+    import IconRefreshDouble from "~icons/iconoir/refresh-double"
 
     const dispatch = createEventDispatcher();  
 
@@ -132,7 +133,10 @@
         </button>
     {/if}
     {#if surfReportLoading}
-        <div class="loading">Loading...</div>
+        <div class="loading-container" in:fly="{{ duration: 200 }}">
+            <div class="loading">Loading</div>
+            <div class="loading-icon"><IconRefreshDouble style="margin: -9.8px; padding: 0;"/></div>
+        </div>
     {/if}
 </main>
 
@@ -232,14 +236,41 @@
         color: rgb(182, 182, 182);
     }
 
-    .loading {
+    
+    .loading-container {
 		font-size: 2em;
 		color: white;
 		text-align: center;
-        width: 100%;
 		transition-duration: 100ms;
-        grid-column: 2;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100%;
+        height: 100%;
 	}
+
+    .loading {
+		padding-right: 0.75em;
+		font-family: Verdana, Geneva, Tahoma, sans-serif;
+		font-weight: lighter;
+	}
+
+	.loading-icon {
+		animation-name: spin;
+		animation-duration: 1.5s;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+        height: 1.2em;
+	}
+
+    @keyframes spin {
+        from {
+            transform:rotate(0deg);
+        }
+        to {
+            transform:rotate(360deg);
+        }
+    }
 
     @media (max-width: 600px){
         main {
@@ -264,6 +295,11 @@
 
         .region {
             font-size: 0.9em;
+        }
+
+        .loading-container {
+            grid-row: 1;
+            margin-right: 1em;
         }
     }
 
