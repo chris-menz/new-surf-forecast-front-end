@@ -1,17 +1,17 @@
-<script>
+<script lang="ts">
     import SpotOutlook from "./spotOutlook.svelte";
     import { user, isAuthenticated } from "$lib/stores/userStore"
     import { onMount } from "svelte";
     import { getSavedSpots, savedSpots } from "$lib/stores/savedSpotStore";
     import { goto } from "$app/navigation";
 
-	let savedSpotsLoaded = false;
+	let savedSpotsLoaded: boolean;
 
     onMount(async () => {
 		savedSpotsLoaded = false
 
         if(await isAuthenticated()){
-			await getSavedSpots($user)
+			getSavedSpots($user)
         } else {
             $savedSpots = []
         }

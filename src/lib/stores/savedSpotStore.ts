@@ -11,11 +11,12 @@ export async function getSavedSpots(user: User) {
     endpoint + "/spot/user/" + user.id,
     axiosConfig
   );
-  if (response.data.message == "Success") {
+  if (response.data.message == "Success" && response.data.spots) {
     savedSpots.update((savedSpots) => (savedSpots = response.data.spots));
-  } else {
-    savedSpots.update((savedSpots) => (savedSpots = []));
+    return;
   }
+
+  savedSpots.update((savedSpots) => (savedSpots = []));
 }
 
 export async function saveNewSpot(
