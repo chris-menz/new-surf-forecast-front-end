@@ -15,7 +15,6 @@ export async function getSavedSpots(user: User) {
     savedSpots.update((savedSpots) => (savedSpots = response.data.spots));
     return;
   }
-
   savedSpots.update((savedSpots) => (savedSpots = []));
 }
 
