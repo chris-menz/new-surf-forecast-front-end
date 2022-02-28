@@ -15,7 +15,7 @@
 		savedSpotsLoaded = false
 
         if(await isAuthenticated()){
-			getSavedSpots($user)
+			await getSavedSpots($user)
         } else {
             $savedSpots = []
         }
