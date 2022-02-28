@@ -1,5 +1,5 @@
-<script>
-	import { user, logout } from "$lib/stores/userStore"
+<script lang="ts">
+	import { user, logout, isAuthenticated } from "$lib/stores/userStore"
 	import {onMount} from "svelte"
 	import { slide } from "svelte/transition";
 	import axios from "axios"
@@ -8,17 +8,10 @@
 	
 	let open = false;
 
+	let isLoggedIn: boolean;
+
 	onMount(async () => {
-        const response = await axios.get(endpoint + "/auth/getcurruserid", axiosConfig)
-        const data = response.data;
-		
-        if(data.message == "user is logged in"){
-            const userres = await axios.get(`${endpoint}/user/${data.id}`)
-            $user = userres.data
-        }
-        else {
-            $user = null
-        }
+        isLoggedIn = await isAuthenticated()
     })
 </script>
 
@@ -37,12 +30,10 @@
 			<li><a href="/surf-reports">Surf Reports</a></li>
 			<li><a href="/my-surf-sessions">My Surf Sessions</a></li>
 			<li><a href="/explore-surf-sessions">Explore Surf Sessions</a></li>
-			{#if $user}
-				{#if $user.username}
-					<li on:click={logout}><a href="/surf-reports">Logout</a></li>
-				{/if}
+			{#if isLoggedIn}
+				<li on:click={logout}><a href="/surf-reports">Logout</a></li>
 			{/if}
-			{#if !$user}
+			{#if !isLoggedIn}
 				<li><a href="/login">Login/Signup</a></li>
 			{/if}
 
@@ -51,12 +42,10 @@
 			<li><a href="/surf-reports">Surf Reports</a></li>
 			<li><a href="/my-surf-sessions">My Surf Sessions</a></li>
 			<li><a href="/explore-surf-sessions">Explore Surf Sessions</a></li>
-			{#if $user}
-				{#if $user.username}
-					<li on:click={logout}><a href="/surf-reports">Logout</a></li>
-				{/if}
+			{#if isLoggedIn}
+				<li on:click={logout}><a href="/surf-reports">Logout</a></li>
 			{/if}
-			{#if !$user}
+			{#if !isLoggedIn}
 				<li><a href="/login">Login/Signup</a></li>
 			{/if}
 		</ul>
