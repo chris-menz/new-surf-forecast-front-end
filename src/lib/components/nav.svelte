@@ -1,10 +1,7 @@
 <script lang="ts">
-	import { user, logout, isAuthenticated } from "$lib/stores/userStore"
-	import {onMount} from "svelte"
+	import { user, logout } from "$lib/stores/userStore"
 	import { slide } from "svelte/transition";
-	import axios from "axios"
-	import { endpoint } from "$lib/utils/endpoint"
-	import { axiosConfig } from "$lib/utils/axiosConfig"
+    import { goto } from "$app/navigation";
 	
 	let open = false;
 </script>
@@ -25,7 +22,10 @@
 			<li><a href="/my-surf-sessions">My Surf Sessions</a></li>
 			<li><a href="/explore-surf-sessions">Explore Surf Sessions</a></li>
 			{#if $user}
-				<li on:click={logout}><a href="/surf-reports">Logout</a></li>
+				<li on:click={async () => {
+					await logout()
+					goto("/")
+				}}><a href="/surf-reports">Logout</a></li>
 			{/if}
 			{#if !$user}
 				<li><a href="/login">Login/Signup</a></li>
@@ -37,7 +37,10 @@
 			<li><a href="/my-surf-sessions">My Surf Sessions</a></li>
 			<li><a href="/explore-surf-sessions">Explore Surf Sessions</a></li>
 			{#if $user}
-				<li on:click={logout}><a href="/surf-reports">Logout</a></li>
+				<li on:click={async () => {
+					await logout()
+					goto("/")
+				}}><a href="/surf-reports">Logout</a></li>
 			{/if}
 			{#if !$user}
 				<li><a href="/login">Login/Signup</a></li>
@@ -125,7 +128,9 @@
 	.nav-list a:hover, .burger-nav-list a:hover {
 		border-radius: 5px;
 		background-color: rgba(10, 5, 39, 0.336);
+		color: rgb(182, 182, 182);
 		text-decoration: none;
+		transition-duration: 250ms;
 	}
 	
 	.logo{

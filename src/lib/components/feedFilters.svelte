@@ -73,15 +73,17 @@
             }
         } type="button">Filter</button>
 
-        <button on:click={() => dispatch("removeFilters")}>
+        <button on:click={() => {
+            dispatch("removeFilters")
+        }}>
             Remove Filters
         </button>
 
         {#if displayDisbaledMessage}
-            <div>Select a region or spot first</div>
+            <div class="messages">Select a region or spot first</div>
         {/if}
         {#if displaySelectRegionFirstMessage}
-            <div>Select a region first</div>
+            <div class="messages">Select a region first</div>
         {/if}
     </div>
 </main>
@@ -167,6 +169,13 @@
 
     button:hover {
         color: rgb(182, 182, 182);
+    }
+
+    .messages {
+        color: white;
+		font-family: Helvetica, sans-serif;
+		font-weight: lighter;
+        text-align: center;
     }
 
     @media (max-width: 950px){

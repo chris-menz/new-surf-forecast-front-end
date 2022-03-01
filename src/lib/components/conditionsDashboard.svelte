@@ -378,6 +378,8 @@
 
 	.error {
         color: white;
+		font-family: Helvetica, sans-serif;
+		font-weight: lighter;
     }
 
 	select:defined {

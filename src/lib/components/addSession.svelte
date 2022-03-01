@@ -409,7 +409,7 @@
         background: #030303;
     }
 
-    .get-conditions-btn, .add-session-btn {
+    button {
         position: relative;
         background: linear-gradient(to right bottom, #6a37c2, #49329e);
         text-align: center;
@@ -455,8 +455,11 @@
     }
 
     .btn-disabled-error {
-        color: red;
         padding-top: 5px;
+        color: white;
+		font-family: Helvetica, sans-serif;
+		font-weight: lighter;
+        text-align: center;
     }
 
     .private-session-message {

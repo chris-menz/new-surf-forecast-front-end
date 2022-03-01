@@ -61,7 +61,6 @@ export async function logout() {
     null,
     axiosConfig
   );
-  console.log(response);
   user.update((user) => (user = null));
   savedSpots.update((savedSpots) => (savedSpots = []));
 }

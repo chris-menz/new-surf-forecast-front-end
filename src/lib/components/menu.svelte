@@ -11,6 +11,7 @@
     let surf_break;
 
     let displayErrorMustSelect = false
+    let displaySelectRegionFirstMessage = false
 
     $: surf_break_names = breaks.filter(surfBreak => surfBreak.region == region).map(surfBreak => surfBreak.break_name).sort()
 
@@ -21,14 +22,22 @@
         <div class="header">
             Live Conditions<br>& 7-day Forecast
         </div>
-        <select class="region-select" bind:value={region} on:change={() => has_selected_region = true}>
+        <select class="region-select" bind:value={region} on:change={() => has_selected_region = true}  on:click={() => {
+            displayErrorMustSelect = false
+            displaySelectRegionFirstMessage = false;
+        }}>
             <option value="" disabled selected>Select Region</option>
             {#each regions as region}
                 <option value="{region}">{region}</option>
             {/each}
         </select>
 
-        <select class="break-select" bind:value={surf_break}>
+        <select class="break-select" bind:value={surf_break} on:click={() => {
+            displayErrorMustSelect = false
+            if(!region){
+                displaySelectRegionFirstMessage = true;
+            }
+        }}>
             <option value="" disabled selected>Select Surf Spot</option>
             {#if has_selected_region}
                 {#each surf_break_names as break_option}
@@ -51,6 +60,9 @@
 
         {#if displayErrorMustSelect}
             <div class="error">Must select break to search</div>
+        {/if}
+        {#if displaySelectRegionFirstMessage}
+            <div class="error">Select a region first</div>
         {/if}
     </div>
 </main>
@@ -152,6 +164,8 @@
 
     .error {
         color: white;
+		font-family: Helvetica, sans-serif;
+		font-weight: lighter;
     }
     
     @media (max-width: 1252px) {
