@@ -166,6 +166,7 @@
         color: white;
 		font-family: Helvetica, sans-serif;
 		font-weight: lighter;
+        text-align: center;
     }
     
     @media (max-width: 1252px) {
