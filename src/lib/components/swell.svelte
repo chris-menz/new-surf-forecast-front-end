@@ -1,19 +1,36 @@
 <script>
 	import { _16point } from '$lib/utils/_16point'
-	import SvelteTooltip from 'svelte-tooltip';
 	import IconArrowDownCircled from "~icons/iconoir/arrow-down-circled"
+	import { fly } from "svelte/transition";
 	
-	const tooltip = "Swell is a measure of ocean energy. It can give us a rough estimate of how big the waves are"
+	const tooltip = "Swell is a measure of ocean energy that tells us how big the waves will be. Ex: 3 feet at 15 seconds means that every 15 seconds on average, 3 feet of energy is hitting the surf spot. \n\nThe shape of the ocean floor at the surf spot also affects wave height and shape. Combining swell information (and tide/wind conditions) with local knowledge of your surf spot can give you a fairly accurate estimate of wave size and shape"
 	export let conditions;
+
+	let displayTooltip = false
 </script>
 
 <main>
 	<div class="card">
-		<div class="header-container">
-			<div class="header">Swell</div>
-			<div class="tooltip">
-				<SvelteTooltip tip={tooltip} color="#111111" top>?</SvelteTooltip>
+		<div class="header-container"
+			on:mouseenter={() => displayTooltip = true} 
+			on:mouseleave={() => displayTooltip = false}
+			on:click={() => displayTooltip = !displayTooltip}>
+
+			<div class="header">
+				Swell
 			</div>
+
+			<div class="tooltip">
+				{#if displayTooltip}
+					<div class="tooltip-message" transition:fly="{{ delay: 50, duration: 200 }}">{tooltip}</div>
+				{/if}
+				<div class="tooltip-toggle">
+					{displayTooltip ? "X" : "?"}
+				</div>
+				
+			</div>
+
+			
 			
 		</div>
 		
@@ -59,6 +76,7 @@
 		font-size: 2em;
 		font-family: Verdana, sans-serif;
 		text-decoration: underline;
+		cursor: pointer;
 	}
 
 	.swell {
@@ -69,16 +87,31 @@
 	}
 
 	.tooltip {
-		font-size: 14px;
-		margin: 2px;
-		font-family: Helvetica, sans-serif;
-		font-weight: lighter;
-		color: rgb(151, 151, 151);
-		width: 2px;
+		position: relative;
+		cursor: pointer;
 	}
 
-	.tooltip:hover {
-		color: white;
-		cursor: pointer;
+	.tooltip-message {
+		position: absolute;
+		font-family: Helvetica, sans-serif;
+		font-weight: lighter;
+		color: rgb(211, 211, 211);
+		font-size: 0.9em;
+		line-height: 1.25em;
+		background-color: #111111;
+		border-radius: 5px;
+		padding: 0.5em 1em;
+		bottom: 30px;
+		left: -100px;
+		width: 250px;
+		height: 100px;
+		overflow-y: scroll;
+		transition-duration: 300ms;
+	}
+
+	.tooltip-toggle {
+		font-family: Helvetica, sans-serif;
+		font-weight: lighter;
+		font-size: 0.9em;
 	}
 </style>

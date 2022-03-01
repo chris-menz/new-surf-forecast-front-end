@@ -233,6 +233,11 @@
     input:defined {
         border: none;
         outline: none;
+        /* background: #030303; */
+    }
+
+    input:focus {
+        background: #030303;
     }
 
     input:hover {

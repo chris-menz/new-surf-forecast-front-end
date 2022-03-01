@@ -99,7 +99,7 @@
     
     .region-select, .break-select {
         background-color: #111111;
-        font-family: Verdana, sans-serif;
+        font-family: Verdana, Helvetica, sans-serif;
         color: rgb(240, 234, 234);
         border: none;
         border-radius: 5px;
