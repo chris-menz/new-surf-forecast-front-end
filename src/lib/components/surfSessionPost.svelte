@@ -217,6 +217,8 @@
         margin-bottom: 0.25em;
     }
 
+
+
     .favorites, .comments {
         display: flex;
         flex-direction: column;
@@ -231,6 +233,10 @@
         font-weight: lighter;
         color: white;
         font-size: 1.2em;
+    }
+
+    .comment-count {
+        margin-top: -0.8px;
     }
 
     .comments-container {
@@ -255,7 +261,7 @@
         font-family: Verdana, sans-serif;
         border: none;
         border-radius: 5px;
-        margin: 0.5em 0 0.5em 0;
+        margin: 0em 0 0.5em 0;
         box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
         cursor: pointer;
         transition-duration: 300ms;
