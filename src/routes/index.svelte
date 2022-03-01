@@ -153,6 +153,7 @@
         .section {
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             margin-bottom: 1em;
         }
 
@@ -163,6 +164,7 @@
 
         button {
             margin-bottom: 00.5em;
+            margin-right: 0;
         }
     }
 
