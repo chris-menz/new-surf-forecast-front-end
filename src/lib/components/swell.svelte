@@ -12,8 +12,6 @@
 <main>
 	<div class="card">
 		<div class="header-container"
-			on:mouseenter={() => displayTooltip = true} 
-			on:mouseleave={() => displayTooltip = false}
 			on:click={() => displayTooltip = !displayTooltip}>
 
 			<div class="header">

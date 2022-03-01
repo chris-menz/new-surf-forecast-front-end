@@ -61,4 +61,10 @@
 		padding: 0.1em;
 		font-size: 1em;
 	}
+
+	@media(max-width: 500px) {
+		.tide {
+			font-size: 00.9em;
+		}
+	}
 </style>
