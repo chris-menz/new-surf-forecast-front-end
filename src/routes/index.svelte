@@ -71,7 +71,7 @@
         flex-direction: column;
         align-items: center;
         margin: 6em auto;
-        width: 70vw;
+        width: 65vw;
     }
 
     .header {
@@ -143,15 +143,17 @@
     @media (max-width: 700px) {
 
         .container {
-            width: 85vw;
-            margin-top: 5em;
+            width: 90vw;
+            margin-top: 4.5em;
         }
         .header{
-            font-size: 1.75em;
+            font-size: 2em;
+            margin-bottom: 1em;
         }
         .section {
             flex-direction: column;
             align-items: center;
+            margin-bottom: 1em;
         }
 
         .content {
@@ -161,6 +163,12 @@
 
         button {
             margin-bottom: 00.5em;
+        }
+    }
+
+    @media (max-width: 375px){
+        .header {
+            font-size: 1.6em;
         }
     }
 
