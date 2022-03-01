@@ -3,15 +3,39 @@
 	import IconArrowDownCircled from "~icons/iconoir/arrow-down-circled"
 	import { fly } from "svelte/transition";
 	
-	const tooltip = "Swell is a measure of ocean energy that tells us how big the waves will be. Ex: 3 feet at 15 seconds means that every 15 seconds on average, 3 feet of energy is hitting the surf spot. \n\nThe shape of the ocean floor at the surf spot also affects wave height and shape. Combining swell information (and tide/wind conditions) with local knowledge of your surf spot can give you a fairly accurate estimate of wave size and shape"
 	export let conditions;
-
+	
 	let displayTooltip = false
+	const tooltip = "Swell is a measure of ocean energy that tells us how big the waves will be. Ex: 3 feet at 15 seconds means that every 15 seconds on average, 3 feet of energy is hitting the surf spot. \n\nThe shape of the ocean floor at the surf spot also affects wave height and shape. Combining swell information (and tide/wind conditions) with local knowledge of your surf spot can give you a fairly accurate estimate of wave size and shape"
+	
 </script>
 
 <main>
 	<div class="card">
-		<div class="header-container"
+		<div class="mobile-header-container"
+			on:click={() => displayTooltip = !displayTooltip}>
+
+			<div class="header">
+				Swell
+			</div>
+
+			<div class="tooltip">
+				{#if displayTooltip}
+					<div class="tooltip-message" transition:fly="{{ delay: 50, duration: 200 }}">{tooltip}</div>
+				{/if}
+				<div class="tooltip-toggle">
+					{displayTooltip ? "X" : "?"}
+				</div>
+				
+			</div>
+
+			
+			
+		</div>
+
+		<div class="bigscreen-header-container"
+			on:mouseenter={() => displayTooltip = true}
+			on:mouseleave={() => displayTooltip = false}
 			on:click={() => displayTooltip = !displayTooltip}>
 
 			<div class="header">
@@ -64,7 +88,7 @@
 		align-items: center;
 	}
 
-	.header-container {
+	.bigscreen-header-container, .mobile-header-container {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -75,6 +99,7 @@
 		font-family: Verdana, sans-serif;
 		text-decoration: underline;
 		cursor: pointer;
+		transition-duration: 250ms;
 	}
 
 	.swell {
@@ -111,5 +136,26 @@
 		font-family: Helvetica, sans-serif;
 		font-weight: lighter;
 		font-size: 0.9em;
+		margin-left: 2px;
+	}
+
+	@media (max-width: 768px){
+		.mobile-header-container {
+			display: flex;
+		}
+
+		.bigscreen-header-container {
+			display: none;
+		}
+	}
+
+	@media (min-width: 769px){
+		.mobile-header-container {
+			display: none;
+		}
+
+		.bigscreen-header-container {
+			display: flex;
+		}
 	}
 </style>

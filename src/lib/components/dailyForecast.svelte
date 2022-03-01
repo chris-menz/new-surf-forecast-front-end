@@ -3,6 +3,7 @@
 	import { onMount } from "svelte";
 	import {_16point} from "$lib/utils/_16point"
 	import { convert24HrToAmPm } from "$lib/utils/dateTimeUtils"
+	import IconArrowDown from "~icons/iconoir/arrow-down"
 
 	export let days_ahead: string;
 	export let localTimeConditionsMap: Map<string, Object>;
@@ -90,6 +91,9 @@
 	<div class="small-table table">
 		<div class="date">
 			{weekday[weekdayIndex]}
+			{#if +days_ahead == 0}
+				<div class="arrow"><IconArrowDown /></div>
+			{/if}
 		</div>
 		
 		
@@ -414,11 +418,20 @@
 	}
 
 	.date {
+		position: relative;
 		padding: 0.5em 0;
 		font-size: 1.5em;
 		font-family: Verdana, sans-serif;
 		text-shadow: 1px 1px 2px #000000;
 	}
+
+	.arrow {
+		position: absolute;
+		right: 4px;
+		top: 8px;
+		transform: rotate(270deg);
+	}
+
 
 	th {
 		font-family: Verdana, sans-serif;
