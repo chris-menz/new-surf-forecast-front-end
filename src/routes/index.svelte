@@ -147,7 +147,7 @@
             margin-top: 5em;
         }
         .header{
-            font-size: 2em;
+            font-size: 1.75em;
         }
         .section {
             flex-direction: column;
