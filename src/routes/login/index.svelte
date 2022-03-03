@@ -43,7 +43,6 @@
 
         if(loginResponseMessage === "login successful"){
             goto("/surf-reports")
-            console.log($user)
         } else if (loginResponseMessage === "No user found with those credentials"){
             displayInvalidCreds = true; 
             password = ""

@@ -3,7 +3,7 @@ import { User } from "../utils/models";
 import axios from "axios";
 import { axiosConfig } from "../utils/axiosConfig";
 import { endpoint } from "../utils/endpoint";
-import { savedSpots } from "./savedSpotStore";
+import { getSavedSpots, savedSpots } from "./savedSpotStore";
 
 // user represents logged in user
 export const user: Writable<User> = writable(null);
@@ -61,6 +61,6 @@ export async function logout() {
     null,
     axiosConfig
   );
-  user.update((user) => (user = null));
   savedSpots.update((savedSpots) => (savedSpots = []));
+  user.update((user) => (user = null));
 }

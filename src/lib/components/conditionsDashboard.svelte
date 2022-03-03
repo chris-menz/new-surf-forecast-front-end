@@ -12,7 +12,7 @@
 	import { onMount } from "svelte";
 	import { fly } from "svelte/transition";
 	import { savedSpots, saveNewSpot, deleteSpot } from "$lib/stores/savedSpotStore"
-	import { user } from "$lib/stores/userStore"
+	import { user, isAuthenticated } from "$lib/stores/userStore"
 	import { endpoint } from "$lib/utils/endpoint"
 	import IconRefreshDouble from "~icons/iconoir/refresh-double"
 

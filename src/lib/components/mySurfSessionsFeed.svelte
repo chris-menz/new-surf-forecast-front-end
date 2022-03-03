@@ -25,17 +25,17 @@
         if(data.message == "user is logged in"){
             const userres = await axios.get(`${endpoint}/user/${data.id}`)
             $user = userres.data
+            const response2 = await getSurfSessions()
+            if(response2 === "success"){
+                surf_sessions = $surfSessions.filter(session => session.creator_id == $user.id)
+            }  
         }
         else {
             $user = null
+            surf_sessions = []
         }
 
-        const response2 = await getSurfSessions()
 
-        if(response2 === "success" && $user){
-            surf_sessions = $surfSessions.filter(session => session.creator_id == $user.id)
-        }  
-        
         sessionsLoaded = true
         sessionsLoading = false
     })

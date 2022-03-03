@@ -5,7 +5,7 @@
 
 
 	let displayTooltip = false
-	const tooltip = "Wetsuit choice comes down to preference. Here's a quick guide that will work for most people if you dont know where to start"
+	const tooltip = "Wetsuit choice comes down to preference. The colder the water is, the thicker the suit needs to be. Gloves, booties and hoods also become essential below certain temperatures"
 	
 </script>
 

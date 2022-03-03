@@ -7,13 +7,15 @@ import { endpoint } from "../utils/endpoint";
 export const savedSpots: Writable<SavedSpot[]> = writable([]);
 
 export async function getSavedSpots(user: User) {
-  const response = await axios.get(
-    endpoint + "/spot/user/" + user.id,
-    axiosConfig
-  );
-  if (response.data.message == "Success" && response.data.spots) {
-    savedSpots.update((savedSpots) => (savedSpots = response.data.spots));
-    return;
+  if (user) {
+    const response = await axios.get(
+      endpoint + "/spot/user/" + user.id,
+      axiosConfig
+    );
+    if (response.data.message == "Success" && response.data.spots) {
+      savedSpots.update((savedSpots) => (savedSpots = response.data.spots));
+      return;
+    }
   }
   savedSpots.update((savedSpots) => (savedSpots = []));
 }

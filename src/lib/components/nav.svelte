@@ -2,6 +2,7 @@
 	import { user, logout } from "$lib/stores/userStore"
 	import { slide } from "svelte/transition";
     import { goto } from "$app/navigation";
+import { getSavedSpots } from "$lib/stores/savedSpotStore";
 	
 	let open = false;
 </script>
@@ -24,6 +25,7 @@
 			{#if $user}
 				<li on:click={async () => {
 					await logout()
+					getSavedSpots($user)
 					goto("/")
 				}}><a href="/surf-reports">Logout</a></li>
 			{/if}
