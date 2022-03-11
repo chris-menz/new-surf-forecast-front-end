@@ -151,7 +151,7 @@ import { getSavedSpots } from "$lib/stores/savedSpotStore";
 		list-style: none;
 		
 	}
-	@media (max-width: 700px) {
+	@media (max-width: 950px) {
 
 		.logo {
 			font-size: 2em;

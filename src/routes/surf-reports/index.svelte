@@ -137,6 +137,45 @@
 		margin-top: 5em;
 	}
 
+	button {
+        position: relative;
+        background: linear-gradient(to right bottom, #6a37c2, #49329e);
+        text-align: center;
+        font-family: Verdana;
+        font-size: 1.1em;
+        color: rgb(240, 234, 234);
+        max-width: 80%;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+        margin-top: 3.5em;
+        border: none;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+        transition-duration: 300ms;
+        z-index: 1;
+    }
+
+    button::before{
+		position: absolute;
+		content: "";
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		border-radius: 5px;
+		background: linear-gradient(to right bottom, rgb(59, 31, 110),rgb(57, 39, 122)0);
+		transition: opacity 0.3s;
+		z-index: -1;
+		opacity: 0;
+	}
+
+    button:hover::before {
+		opacity: 1;
+	}
+
+    button:hover {
+        color: rgb(182, 182, 182);
+    }
 	@media (max-width: 950px) {
 		.large-screen-view {
 			display: none;
